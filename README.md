@@ -20,12 +20,15 @@ Built with PHP, SQLite, and W3.CSS. No frameworks.
 
 4. Visit `http://localhost/video-planner/`
 
-## AI Title Generation
+## Features
 
-Uses a local [Ollama](https://ollama.com) instance to suggest titles from your brain dump. Requires Ollama to be reachable on the network with `OLLAMA_ORIGINS=*` set.
+- **Quick-add** — paste a brain dump from the home page to capture ideas fast
+- **Detail editor** — edit title and brain dump with autosave (1.5s debounce)
+- **AI title generation** — generates a YouTube title from your brain dump via a local [Ollama](https://ollama.com) instance (requires Ollama reachable on the network with `OLLAMA_ORIGINS=*`)
+- **Dark mode** — toggle in the header; preference persists across sessions
 
 ## Roadmap
 
-- [ ] Generate a title from the brain dump using local AI (Ollama) ✅
 - [ ] Status tracking (idea → scripted → filmed → edited → published)
-- [ ] Delete idea from detail page ✅
+- [ ] Channel tagging (Edit with Evan / Evan Mann)
+- [ ] Tags and reference URLs

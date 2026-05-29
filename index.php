@@ -10,12 +10,33 @@ $ideas = $db->query("SELECT * FROM ideas ORDER BY created_at DESC")->fetchAll(PD
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Video Planner</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body.dark { background-color: #1e1e1e !important; color: #e0e0e0 !important; }
+        body.dark .w3-white { background-color: #2a2a2a !important; color: #e0e0e0 !important; }
+        body.dark .w3-input, body.dark textarea.w3-input { background-color: #333 !important; color: #e0e0e0 !important; border-color: #555 !important; }
+        body.dark .w3-hover-light-grey:hover { background-color: #3a3a3a !important; }
+        body.dark .w3-text-grey { color: #aaa !important; }
+        body.dark p { color: #e0e0e0; }
+        body.dark a { color: #e0e0e0; }
+    </style>
+    <script>if (localStorage.getItem('darkMode') === '1') document.documentElement.classList.add('preload-dark');</script>
+    <style>.preload-dark body { background-color: #1e1e1e !important; }</style>
 </head>
 <body class="w3-light-grey">
+<script>
+    if (localStorage.getItem('darkMode') === '1') document.body.classList.add('dark');
+    function toggleDark() {
+        var dark = document.body.classList.toggle('dark');
+        localStorage.setItem('darkMode', dark ? '1' : '0');
+        document.getElementById('theme-btn').textContent = dark ? 'Light mode' : 'Dark mode';
+    }
+</script>
 
-<div class="w3-container w3-black w3-padding">
-    <h2>Video Planner</h2>
+<div class="w3-container w3-black w3-padding" style="display:flex; align-items:center; justify-content:space-between">
+    <h2 style="margin:0">Video Planner</h2>
+    <button id="theme-btn" onclick="toggleDark()" class="w3-button w3-dark-grey w3-small">Dark mode</button>
 </div>
+<script>if (localStorage.getItem('darkMode') === '1') document.getElementById('theme-btn').textContent = 'Light mode';</script>
 
 <!-- Quick-add form -->
 <div class="w3-container w3-padding">
