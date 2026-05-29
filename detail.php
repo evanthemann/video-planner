@@ -51,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             <textarea name="brain_dump" class="w3-input w3-border w3-margin-bottom" rows="8"><?= htmlspecialchars($idea['brain_dump'] ?? '') ?></textarea>
 
             <button type="submit" name="save" class="w3-button w3-black">Save</button>
+            <span id="save-status" class="w3-small w3-text-grey w3-margin-left"></span>
         </form>
 
         <p class="w3-small w3-text-grey w3-margin-top">Created: <?= $idea['created_at'] ?> &nbsp;|&nbsp; Updated: <?= $idea['updated_at'] ?></p>
@@ -64,6 +65,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
 </div>
 
 <script>
+var saveTimer = null;
+var ideaId = <?= $idea['id'] ?>;
+
+function autosave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function() {
+        var status = document.getElementById('save-status');
+        status.textContent = 'Saving...';
+        var form = new FormData();
+        form.append('id', ideaId);
+        form.append('title', document.getElementById('title-input').value);
+        form.append('brain_dump', document.querySelector('[name="brain_dump"]').value);
+        fetch('save.php', { method: 'POST', body: form })
+            .then(function(r) { return r.json(); })
+            .then(function() { status.textContent = 'Saved'; })
+            .catch(function() { status.textContent = 'Save failed'; });
+    }, 1500);
+}
+
+document.getElementById('title-input').addEventListener('input', autosave);
+document.querySelector('[name="brain_dump"]').addEventListener('input', autosave);
+
 function generateTitle() {
     var brainDump = document.querySelector('[name="brain_dump"]').value.trim();
     if (!brainDump) {
