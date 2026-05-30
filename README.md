@@ -23,8 +23,9 @@ Built with PHP, SQLite, and W3.CSS. No frameworks.
 ## Features
 
 - **Quick-add** — paste a brain dump from the home page to capture ideas fast
+- **Responsive card grid** — ideas display as tiles, reflowing from 1 column on mobile to multi-column on desktop
 - **Detail editor** — edit title and brain dump with autosave (1.5s debounce)
-- **AI title generation** — generates a YouTube title from your brain dump via a local [Ollama](https://ollama.com) instance (requires Ollama reachable on the network with `OLLAMA_ORIGINS=*`)
+- **AI name generation** — generates a descriptive title from your brain dump via a local [Ollama](https://ollama.com) instance (requires Ollama reachable on the network with `OLLAMA_ORIGINS=*`)
 - **Dark mode** — toggle in the header; preference persists across sessions
 
 ## Roadmap
