@@ -131,7 +131,10 @@ function generateTitle() {
     })
         .then(function(r) { return r.json(); })
         .then(function(data) {
-            document.getElementById('title-input').value = data.response.trim();
+            var title = data.response.trim();
+            document.getElementById('title-input').value = title;
+            var dump = document.querySelector('[name="brain_dump"]');
+            dump.value = dump.value.trimEnd() + '\n\nAI Generated Title: ' + title;
             status.textContent = 'Done! Edit it if you like, then save.';
             autosave();
         })
