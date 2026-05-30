@@ -126,7 +126,7 @@ function generateTitle() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             model: 'qwen2.5:7b-instruct-q4_K_M',
-            prompt: 'Give this project idea a name. Keep it under 70 characters — short, clear, and to the point. Reply with only the name, nothing else:\n\n' + brainDump,
+            prompt: 'Give this note a descriptive title. Use words from the note where possible. You can use spaces. Do not combine words into one (no CamelCase or compound words). Avoid catchy or marketing language — just describe what the note is about. Keep it under 70 characters. Reply with only the title, nothing else:\n\n' + brainDump,
             stream: false
         })
     })
