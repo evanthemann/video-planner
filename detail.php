@@ -67,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
             <label class="w3-text-grey w3-small">Title</label>
             <input type="text" name="title" id="title-input" value="<?= htmlspecialchars($idea['title'] ?? '') ?>" class="w3-input w3-border w3-margin-bottom">
             <button type="button" id="gen-btn" class="w3-button w3-dark-grey w3-small w3-margin-bottom" onclick="generateTitle()">Generate Name with AI</button>
-            <button type="button" class="w3-button w3-light-grey w3-small w3-margin-bottom" onclick="document.getElementById('title-input').value=''; autosave();">Clear</button>
             <span id="gen-status" class="w3-small w3-text-grey w3-margin-left"></span>
 
             <label class="w3-text-grey w3-small">Brain Dump</label>

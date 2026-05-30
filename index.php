@@ -48,24 +48,34 @@ $ideas = $db->query("SELECT * FROM ideas ORDER BY created_at DESC")->fetchAll(PD
     </div>
 </div>
 
-<!-- Ideas list -->
+<!-- Ideas grid -->
 <div class="w3-container w3-padding">
     <?php if (empty($ideas)): ?>
         <p class="w3-text-grey">No ideas yet.</p>
     <?php else: ?>
-        <?php foreach ($ideas as $row): ?>
-            <?php
-                $preview = $row['title'] ?: $row['brain_dump'];
-                $preview = htmlspecialchars(substr($preview, 0, 120));
-                if (strlen($row['title'] ?: $row['brain_dump']) > 120) $preview .= '...';
-            ?>
-            <a href="detail.php?id=<?= $row['id'] ?>" style="display:block; text-decoration:none; color:inherit">
-                <div class="w3-card w3-white w3-padding w3-margin-bottom w3-hover-light-grey">
-                    <p style="margin:0 0 4px"><?= $preview ?: '<em class="w3-text-grey">Empty idea</em>' ?></p>
-                    <p class="w3-small w3-text-grey" style="margin:0"><?= $row['created_at'] ?></p>
-                </div>
-            </a>
-        <?php endforeach ?>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:16px;">
+            <?php foreach ($ideas as $row): ?>
+                <?php
+                    $title   = $row['title'] ? htmlspecialchars($row['title']) : '';
+                    $dump    = $row['brain_dump'] ?? '';
+                    $preview = htmlspecialchars(substr($dump, 0, 120));
+                    if (strlen($dump) > 120) $preview .= '...';
+                ?>
+                <a href="detail.php?id=<?= $row['id'] ?>" style="text-decoration:none; color:inherit">
+                    <div class="w3-card w3-white w3-padding w3-hover-light-grey" style="height:100%; box-sizing:border-box;">
+                        <?php if ($title): ?>
+                            <p style="margin:0 0 6px; font-weight:600"><?= $title ?></p>
+                            <?php if ($preview): ?>
+                                <p class="w3-small w3-text-grey" style="margin:0 0 8px"><?= $preview ?></p>
+                            <?php endif ?>
+                        <?php else: ?>
+                            <p style="margin:0 0 8px"><?= $preview ?: '<em class="w3-text-grey">Empty idea</em>' ?></p>
+                        <?php endif ?>
+                        <p class="w3-small w3-text-grey" style="margin:0"><?= $row['created_at'] ?></p>
+                    </div>
+                </a>
+            <?php endforeach ?>
+        </div>
     <?php endif ?>
 </div>
 
